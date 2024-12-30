@@ -19,28 +19,27 @@ def predict():
     data = request.get_json()
     input_text = data.get('text', '')
 
-    # Vectorize the input text
+    # 1. Vectorize the input text
     vectorized_text = tfidf_vectorizer.transform([input_text])
 
-    # Predict the label
+    # 2. Predict the label
     prediction = pac.predict(vectorized_text)[0]
 
-    # If you want a confidence-like measure, you can use decision_function
-    # But PassiveAggressiveClassifier doesn't output probabilities
+    # 3. (Optional) Confidence-like measure (distance from decision boundary)
     try:
         distance = pac.decision_function(vectorized_text)[0]
-        # The sign indicates FAKE vs REAL
-        # The magnitude is how far from the decision boundary
+        # Sign indicates FAKE vs REAL
+        # Magnitude is how far from the boundary
         confidence = float(abs(distance))
     except:
         confidence = None
 
-    # Return a JSON response
+    # 4. Return a JSON response
     return jsonify({
         'prediction': prediction,
-        'confidence': confidence  # or remove if not needed
+        'confidence': confidence
     })
 
 if __name__ == '__main__':
-    # For local development. In production, you might use gunicorn or similar.
+    # For local development
     app.run(debug=True)

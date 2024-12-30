@@ -3,6 +3,8 @@ import string
 import nltk
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import RandomizedSearchCV
+
 
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
@@ -106,6 +108,7 @@ def train_fake_news_model(csv_path='news.csv'):
         n_jobs=-1
     )
 
+
     # 2.8 Fit GridSearch on training data
     print("Starting Grid Search for best parameters...")
     grid_search.fit(X_train, y_train)
@@ -133,3 +136,4 @@ def train_fake_news_model(csv_path='news.csv'):
     pac_model = best_model.named_steps['pac']
 
     return tfidf_vectorizer, pac_model
+
