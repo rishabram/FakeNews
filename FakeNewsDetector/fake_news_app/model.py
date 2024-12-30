@@ -4,8 +4,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import classification_report
+
 import re
 import string
+
 
 def clean_text(text):
     # Lowercase
@@ -44,7 +47,13 @@ def train_fake_news_model(csv_path='news.csv'):
     )
 
     # 5. TF-IDF
-    tfidf_vectorizer = TfidfVectorizer(stop_words='english', max_df=0.7)
+    tfidf_vectorizer = TfidfVectorizer(
+        stop_words='english',
+        max_df=0.7,
+        ngram_range=(1, 2),  # unigrams + bigrams
+        min_df=2  # ignore extremely rare words
+    )
+
     tfidf_train = tfidf_vectorizer.fit_transform(X_train)
     tfidf_test = tfidf_vectorizer.transform(X_test)
 
@@ -59,5 +68,7 @@ def train_fake_news_model(csv_path='news.csv'):
 
     cm = confusion_matrix(y_test, y_pred, labels=['FAKE','REAL'])
     print("Confusion Matrix:\n", cm)
+    print(classification_report(y_test, y_pred))
 
     return tfidf_vectorizer, pac
+
