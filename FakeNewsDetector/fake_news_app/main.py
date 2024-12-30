@@ -26,15 +26,14 @@ def predict():
     prediction = pac.predict(vectorized_text)[0]
 
     # If you want a confidence-like measure, you can use decision_function
-    # But remember, PassiveAggressiveClassifier doesn't output probabilities
-    confidence = None
+    # But PassiveAggressiveClassifier doesn't output probabilities
     try:
         distance = pac.decision_function(vectorized_text)[0]
-        # The sign of distance determines FAKE vs REAL
+        # The sign indicates FAKE vs REAL
         # The magnitude is how far from the decision boundary
         confidence = float(abs(distance))
     except:
-        pass
+        confidence = None
 
     # Return a JSON response
     return jsonify({
@@ -43,4 +42,5 @@ def predict():
     })
 
 if __name__ == '__main__':
+    # For local development. In production, you might use gunicorn or similar.
     app.run(debug=True)
