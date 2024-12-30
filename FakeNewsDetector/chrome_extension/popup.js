@@ -5,7 +5,7 @@ document.getElementById('checkBtn').addEventListener('click', async () => {
   // Run a script in the page to get the selection
   const results = await chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: () => window.getSelection().toString()  // This returns currently highlighted text
+    func: () => window.getSelection().toString()  // returns currently highlighted text
   });
 
   const selectedText = results[0].result || "";
@@ -15,7 +15,6 @@ document.getElementById('checkBtn').addEventListener('click', async () => {
   }
 
   // 2. Call the Flask API with the selected text
-  // Change the URL to your deployed Flask endpoint if on Heroku or other server
   const flaskUrl = "http://127.0.0.1:5000/predict";
 
   try {
