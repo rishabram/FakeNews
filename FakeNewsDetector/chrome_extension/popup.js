@@ -11,7 +11,7 @@ document.getElementById('checkBtn').addEventListener('click', async () => {
     return;
   }
 
-  const flaskUrl = "http://127.0.0.1:5000/predict";  // EXACT match to your server
+  const flaskUrl = "http://127.0.0.1:5000/predict";
 
   try {
     const response = await fetch(flaskUrl, {
@@ -21,7 +21,7 @@ document.getElementById('checkBtn').addEventListener('click', async () => {
     });
     const data = await response.json();
     document.getElementById('result').textContent =
-      `Prediction: ${data.prediction}, Confidence: ${data.confidence}`;
+      `Prediction: ${data.prediction}, Confidence: ${data.confidence_label}`;
   } catch (error) {
     console.error(error);
     document.getElementById('result').textContent = "Error contacting the server.";

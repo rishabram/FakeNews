@@ -6,54 +6,74 @@
   <title>Fake News Detector</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 20px;
-      background: #f9f9f9;
-      color: #333;
+      padding: 0px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
       text-align: center;
+      width: 380px;
+      height: 400px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     h1 {
-      font-size: 24px;
-      color: #2c3e50;
-      margin-bottom: 20px;
+      font-size: 20px;
+      margin: 0;
+      padding: 10px 0;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     #checkBtn {
-      background: #3498db;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
       color: #fff;
       border: none;
       padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
+      font-size: 14px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+      align-self: center;
     }
 
     #checkBtn:hover {
-      background: #2980b9;
+      transform: translateY(-1px);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #checkBtn:active {
+      transform: translateY(0);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     #result {
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 10px;
+      font-size: 14px;
       padding: 10px;
-      border-radius: 5px;
-      background: #ecf0f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #f9f9f9;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      height: 100px;
+      overflow-y: auto;
+      word-wrap: break-word;
     }
 
     #error {
-      color: #e74c3c;
+      color: #ff4757;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <h1>Fake News Detector</h1>
   <button id="checkBtn">Check Selected Text</button>
-  <p id="result"></p>
-
+  <div id="result"></div>
   <script src="popup.js"></script>
 </body>
 </html>

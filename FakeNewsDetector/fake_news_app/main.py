@@ -3,7 +3,6 @@ from model import train_fake_news_model
 
 app = Flask(__name__)
 
-# Train or load your model at startup
 tfidf_vectorizer, pac = train_fake_news_model('news.csv')
 
 @app.route('/')
@@ -12,36 +11,34 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    """
-    Expects a JSON body with a field 'text' containing
-    the text to classify, e.g. { "text": "Some suspicious news text" }
-    """
     data = request.get_json()
     input_text = data.get('text', '')
 
-    # Vectorize the input text
     vectorized_text = tfidf_vectorizer.transform([input_text])
-
-    # Predict the label
     prediction = pac.predict(vectorized_text)[0]
-
-    # If you want a confidence-like measure, you can use decision_function
-    # But remember, PassiveAggressiveClassifier doesn't output probabilities
     confidence = None
     try:
         distance = pac.decision_function(vectorized_text)[0]
-        # The sign of distance determines FAKE vs REAL
-        # The magnitude is how far from the decision boundary
         confidence = float(abs(distance))
     except:
         pass
 
+    if confidence is not None:
+        if confidence > 1.5:
+            confidence_label = "Most Likely " + ("True" if prediction == "REAL" else "False")
+        elif confidence > 0.5:
+            confidence_label = "Maybe " + ("True" if prediction == "REAL" else "False")
+        else:
+            confidence_label = prediction+ " but verify with other sources!"
+    else:
+        confidence_label = "No confidence available"
 
-    # Return a JSON response
     return jsonify({
         'prediction': prediction,
-        'confidence': confidence  # or remove if not needed
+        'confidence': confidence,
+        'confidence_label': confidence_label
     })
+
 
 if __name__ == '__main__':
     app.run(debug=True)
