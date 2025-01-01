@@ -1,13 +1,59 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Fake News Detector</title>
-  </head>
-  <body>
-    <h1>Fake News Detector</h1>
-    <button id="checkBtn">Check Selected Text</button>
-    <p id="result"></p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake News Detector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+    }
 
-    <script src="popup.js"></script>
-  </body>
+    h1 {
+      font-size: 24px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    #checkBtn {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #checkBtn:hover {
+      background: #2980b9;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #ecf0f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #error {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fake News Detector</h1>
+  <button id="checkBtn">Check Selected Text</button>
+  <p id="result"></p>
+
+  <script src="popup.js"></script>
+</body>
 </html>

@@ -36,6 +36,7 @@ def predict():
     except:
         pass
 
+
     # Return a JSON response
     return jsonify({
         'prediction': prediction,

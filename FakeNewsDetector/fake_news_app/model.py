@@ -71,4 +71,3 @@ def train_fake_news_model(csv_path='news.csv'):
     print(classification_report(y_test, y_pred))
 
     return tfidf_vectorizer, pac
-
