@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,19 +8,18 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       background-color: #1e2a3b;
       color: #fff;
       text-align: center;
-      width: 320px;
-      padding: 20px;
+      width: 380px;
       box-sizing: border-box;
       border-radius: 10px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 24px;
       margin-bottom: 20px;
       color: #f5f5f5;
     }
@@ -29,8 +28,8 @@
       background: linear-gradient(90deg, #ff7e5f, #feb47b);
       color: #fff;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 15px 30px;
+      font-size: 18px;
       border-radius: 30px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -50,27 +49,31 @@
     /* Results display */
     #result {
       margin-top: 20px;
-      font-size: 16px;
-      padding: 15px;
+      font-size: 18px;
+      padding: 20px;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.1);
       color: #f9f9f9;
       box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
-      height: 100px;
+      height: 120px;
       word-wrap: break-word;
+      transition: background-color 0.3s ease;
     }
 
     /* Color coding for result */
     .real {
-      color: #2ecc71;
+      background-color: #2ecc71;
+      color: #fff;
     }
 
     .fake {
-      color: #e74c3c;
+      background-color: #e74c3c;
+      color: #fff;
     }
 
     .neutral {
-      color: #f39c12;
+      background-color: #f39c12;
+      color: #fff;
     }
 
     /* Error message styling */
@@ -88,16 +91,18 @@
       }
 
       h1 {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       #checkBtn {
         width: 100%;
         font-size: 18px;
+        padding: 15px;
       }
 
       #result {
-        font-size: 14px;
+        font-size: 16px;
+        height: auto;
       }
     }
   </style>
